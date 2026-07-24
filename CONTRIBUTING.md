@@ -1,56 +1,253 @@
-# Contribution Guide
-Contribution guide specifies the way and standards regarding contributions to all orbs-network projects.
+# Guía de Contribución  
+**RDM Digital Hub — LDTOCS (MD-X4)**
 
-## [Code of Conduct](./CODE_OF_CONDUCT.md)
-We have adopted a Code of Conduct that we expect project participants to adhere to. Please read the full text so that you can understand what actions will and will not be tolerated.
-
-## Open Development
-All work on Orb network happens directly on [GitHub](https://github.com/orbs-network). 
-Both core team members and external contributors send pull requests which go through the same review process.
-
-## Engineering Standards
-We value high quality code standards. Which is why the written code MUST be tested. It can be done using different types of tests, preferably in the [test-driven (TDD)](https://en.wikipedia.org/wiki/Test-driven_development) manner.
-
-## Branching Procedure
-We will do our best to keep the master branch in good shape, with tests passing at all times. 
-If you send a pull request, please do it against the master branch. 
-
-## Bugs
-### Where to Find Known Issues
-We are using GitHub Issues for our public bugs. We keep a close eye on this and try to make it clear when we have an internal fix in progress. 
-Before filing a new task, make sure your problem doesn’t already exist.
-
-### Reporting New Issues
-The best way to get your bug fixed is to provide a reduced test case. In other cases, make sure to describe step-by-step instructions of how to reproduce an issue.
-
-## How to Get in Touch
-Community discussions: [community.orbs.network](https://comunity.orbs.network)
-
-## Proposing a Change
-If you intend to change the public API, or make any non-trivial changes to the implementation, we recommend filing an issue. This lets us reach an agreement on your proposal before you put significant effort into it.
-If you’re only fixing a bug, it’s fine to submit a pull request right away but we still recommend to file an issue detailing what you’re fixing. This is helpful in case we don’t accept that specific fix but want to keep track of the issue.
-
-### Your First Pull Request
-Working on your first Pull Request? 
-
-You can learn how from this free video series:
-[How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)
-
-If you decide to fix an issue, please be sure to check the comment thread in case somebody is already working on a fix. If nobody is working on it at the moment, please leave a comment stating that you intend to work on it so other people don’t accidentally duplicate your effort.
-If somebody claims an issue but doesn’t follow up for more than two weeks, it’s fine to take it over but you should still leave a comment.
-
-### Sending a Pull Request   
-The core contributors are monitoring for pull requests. They will review your pull request and either merge it, request changes to it, or close it with an explanation. We’ll do our best to provide updates and feedback throughout the process.
-Before submitting a pull request, please make sure the following is done:
-Fork the repository and create your branch from master.
-If you’ve fixed a bug or added code that should be tested, add tests!
-Ensure the test suite passes.
-
-## License
-By contributing to Orbs Network, you agree that your contributions will be licensed under its MIT license.
+Esta guía define el cómo, el cuándo y el bajo qué estándares se contribuye a los proyectos del ecosistema RDM Digital Hub.  
+Todas las personas que envíen código, documentación, diseño, datos o decisiones deben seguir estas reglas.
 
 ---
-This document inspired by:
-* https://reactjs.org/docs/how-to-contribute.html
-* https://www.stellar.org/developers/guides/contributing.html
-* https://www.contributor-covenant.org/
+
+## 1. Código de Conducta
+
+Antes de contribuir, lee y acepta el [Código de Conducta](./CODE_OF_CONDUCT.md).  
+Todas las interacciones —issues, pull requests, comentarios, discusiones y despliegues— están reguladas por él.
+
+El incumplimiento del Código de Conducta puede derivar en bloqueo de PRs, restricción de participación o sanciones según la escalera definida.
+
+---
+
+## 2. Filosofía de Desarrollo Abierto
+
+Todo el trabajo de RDM Digital Hub se realiza de manera abierta en GitHub.  
+Tanto el equipo núcleo como personas colaboradoras externas utilizan issues y pull requests, sometidos al mismo proceso de revisión.[web:198][web:199]
+
+Principios:
+
+- Ningún cambio relevante se hace fuera de Git.
+- Las decisiones importantes se documentan en issues, PRs o propuestas arquitectónicas.
+- Cualquier persona puede revisar, comentar y sugerir mejoras respetando el Código de Conducta.
+
+---
+
+## 3. Estándares de Ingeniería
+
+### 3.1. Calidad mínima aceptable
+
+Cada contribución de código debe aspirar a:
+
+- Ser legible, modular y mantenible.
+- Estar cubierta por pruebas (unitarias, de integración, de contrato o E2E según corresponda).[web:202][web:205]  
+- Respetar los estándares de estilo y arquitectura definidos en el proyecto.
+
+No se aceptan:
+
+- Cambios sin justificación técnica clara.
+- PRs que rompan tests existentes sin explicación y estrategia.
+- Refactors masivos sin documentación de impacto.
+
+### 3.2. Pruebas y TDD
+
+Promovemos el enfoque de desarrollo guiado por pruebas (TDD) cuando sea viable.[web:199][web:205]
+
+- Si añades funcionalidad nueva, también añades pruebas nuevas.
+- Si corriges un bug, añades una prueba que lo reproduzca y verifique la corrección.
+- Si refactorizas, asegúrate de que las pruebas existentes siguen pasando.
+
+---
+
+## 4. Flujo de trabajo con Git y ramas
+
+### 4.1. Rama base
+
+La rama base del desarrollo es `main` (o `master`, según repo).  
+Todos los pull requests deben hacerse contra esa rama, salvo que la documentación diga lo contrario.
+
+### 4.2. Convenciones de ramas
+
+Se recomienda crear ramas con nombre descriptivo, por ejemplo:
+
+- `feat/<modulo>-<descripcion-corta>`
+- `fix/<modulo>-<bug-id>`
+- `chore/<tarea>`
+- `docs/<area>-<descripcion>`
+
+Ejemplos:
+
+- `feat/ldocs-territorial-search`
+- `fix/mdx4-security-headers`
+- `docs/api-dpa`
+
+### 4.3. Commits
+
+Los commits deben ser:
+
+- Pequeños y coherentes: un cambio conceptual por commit.[web:202]  
+- Con mensajes claros, en imperativo corto (ej. `Add PQC key rotation`, `Fix arch triage script`).
+- Sin “basura” tipo `fix stuff`, `changes` o similares.
+
+Commits que mezclen cambios de seguridad, refactor masivo y nueva funcionalidad sin separación podrán ser rechazados en revisión.
+
+---
+
+## 5. Gestión de issues y bugs
+
+### 5.1. Dónde encontrar tareas
+
+Usamos **GitHub Issues** para:
+
+- Bugs (`[BUG]`, label `bug`).
+- Features (`[FEATURE]`, label `enhancement`).
+- Seguridad (`[SECURITY]`, label `security`).
+- Arquitectura (`[ARCH]`, label `architecture`).  
+
+Revisa primero los issues abiertos antes de crear uno nuevo, especialmente los etiquetados como:
+
+- `good-first-issue`
+- `help-wanted`
+- `security`
+- `architecture`
+
+### 5.2. Reportar nuevos bugs
+
+Al abrir un issue de bug, incluye como mínimo:
+
+- Contexto: qué estabas intentando hacer.
+- Pasos de reproducción, claros y ordenados.
+- Entorno (navegador, OS, versión, entorno de ejecución).[web:201][web:205]  
+- Lo que esperabas que ocurriera y lo que ocurrió.
+- Evidencia (logs, capturas, respuestas de API, etc.).
+
+Cuanto más preciso, más fácil será reproducir y corregir el problema.
+
+### 5.3. Issues de seguridad
+
+Para vulnerabilidades o problemas de soberanía de datos:
+
+- No publiques detalles sensibles en issues públicos.
+- Usa el canal de seguridad definido en la documentación del proyecto.
+- Proporciona información suficiente para evaluar gravedad y reproducir de forma segura.
+
+---
+
+## 6. Proponer cambios
+
+### 6.1. Cambios pequeños
+
+Para correcciones menores (typos, fallos triviales, mejoras de documentación):
+
+- Puedes abrir directamente un pull request.
+- Aun así es recomendable referenciar un issue o crear uno pequeño.
+
+### 6.2. Cambios no triviales
+
+Para cambios en:
+
+- API pública.
+- Arquitectura del sistema.
+- Modelos de datos y soberanía.
+- Seguridad, cifrado, DPA, PQC.
+
+Se recomienda primero:
+
+1. Abrir un issue de propuesta (ej. `[ARCH]` o `[SECURITY]`).
+2. Describir:
+   - Problema actual.
+   - Opciones consideradas.
+   - Pros y contras.
+   - Riesgos.
+3. Esperar feedback y acuerdo básico.
+4. Recién entonces comenzar la implementación.
+
+Esto evita trabajo descartado y asegura alineación con la visión del proyecto.[web:198][web:204]
+
+---
+
+## 7. Tu primer Pull Request
+
+Si es tu primera contribución:
+
+- Empieza con un `good-first-issue`, una mejora de documentación o un bug pequeño.[web:205][web:207]  
+- Anuncia en el issue que vas a trabajar en él para evitar duplicidades.
+- Si alguien ya lo reclamó pero no hay actividad por más de 2 semanas, puedes tomarlo y dejar un comentario.
+
+Recursos recomendados para aprender el flujo de PRs en GitHub:
+
+- Guías generales sobre cómo contribuir a proyectos open source.[web:198][web:201][web:205]  
+
+---
+
+## 8. Enviar un Pull Request
+
+Antes de enviar un PR, asegúrate de:
+
+1. Tener tu rama creada desde `main` / `master`.
+2. Haber integrado los últimos cambios de la rama base.
+3. Haber añadido pruebas cuando corresponde.
+4. Haber ejecutado el conjunto de tests y verificado que pasan.
+5. Haber actualizado documentación si tu cambio afecta el comportamiento público.
+
+Al abrir el PR:
+
+- Rellena la plantilla de PR (si existe).
+- Explica qué problema resuelve o qué funcionalidad introduce.
+- Indica riesgos o posibles impactos.
+- Referencia los issues relacionados (`Fixes #123`, `Relates to #456`).
+
+El equipo de revisión puede:
+
+- Aceptar y fusionar el PR.
+- Solicitar cambios y mejoras.
+- Cerrar el PR con explicación si no encaja en la dirección del proyecto.
+
+---
+
+## 9. Estándares de revisión
+
+Las revisiones buscan proteger:
+
+- Calidad técnica.
+- Seguridad y soberanía.
+- Coherencia con la arquitectura.
+- Mantenibilidad y claridad del código.
+
+Durante la revisión:
+
+- Se espera un intercambio respetuoso y centrado en lo técnico.
+- Se pueden pedir cambios de estilo, estructura o enfoque.
+- Se busca, siempre, un resultado que beneficie al proyecto y a la comunidad.
+
+---
+
+## 10. Licencia y propiedad intelectual
+
+Al contribuir a RDM Digital Hub — LDTOCS (MD-X4):
+
+- Aceptas que tus contribuciones se licencien bajo las licencias del proyecto (por ejemplo, MIT u otra licencia especificada).  
+- Garantizas que el código que aportas es tuyo o que tienes derecho a compartirlo.
+- Aceptas que el proyecto puede usar, modificar y redistribuir tus contribuciones según la licencia.
+
+No se acepta:
+
+- Código copiado de terceros con licencia incompatible.
+- Contribuciones que violen derechos de autor o acuerdos de confidencialidad.
+
+---
+
+## 11. Buenas prácticas generales
+
+- Lee siempre el README, este `CONTRIBUTING.md` y el `CODE_OF_CONDUCT.md` antes de contribuir.[web:198][web:205]  
+- Mantén un tono respetuoso en todos los canales.
+- Haz preguntas si algo no está claro.
+- Sé paciente con los tiempos de revisión: las personas mantenedoras tienen disponibilidad limitada.[web:202]  
+- Prefiere cambios pequeños y bien explicados, en lugar de PRs enormes sin contexto.
+
+---
+
+## 12. Actualización de esta guía
+
+Esta guía se revisará periódicamente para:
+
+- Ajustarse a las nuevas necesidades del ecosistema.
+- Incorporar aprendizajes de la comunidad y de casos reales.
+- Mantenerse alineada con el Código de Conducta y la arquitectura del proyecto.
+
+Contribuciones a esta propia guía son bienvenidas: si ves un área mejorable, abre un issue o PR explicando la propuesta.
